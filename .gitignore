@@ -1,4 +1,5 @@
 .DS_Store
 .Rhistory
 */__pycache__/*
-*s.ipynb_checkpoints/*
+*.ipynb_checkpoints/*
+.vscode/*
