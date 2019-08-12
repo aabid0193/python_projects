@@ -1,0 +1,24 @@
+
+import numpy as np
+from sklearn import datasets, linear_model
+
+b_1=np.random.randint(500, size=(5, 1)
+b_2=np.random.randint(500, size=(5, 1)
+iter=500
+data_y = np.random.randint(500, size=(300, 1)
+data_x = np.random.randint(500, size=(300, 5)
+
+def em(B1,B2,iter, data_y, data_x):
+  for t in range(1, iter+1):
+    J_1=[]
+    J_2=[]
+    for i in len(data_y):
+      if (data_y[i]-np.dot(data_x[i],b_1)) < (data_y[i]-np.dot(data_x[i],b_2))
+        J_1.append[i]
+        else:
+          J_2.append[i]
+y_a =
+x_a =
+
+L = lr(y_a, x_a)
+L.betas

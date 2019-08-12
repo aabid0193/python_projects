@@ -1,0 +1,72 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema recommenderData
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema recommenderData
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `recommenderData` DEFAULT CHARACTER SET latin1 ;
+USE `recommenderData` ;
+
+-- -----------------------------------------------------
+-- Table `datamining`.`recipe`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `recommenderData`.`recipe` (
+  `idRecipe` INT(11) NOT NULL AUTO_INCREMENT,
+  `recipeName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idRecipe`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 10
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `datamining`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `recommenderData`.`users` (
+  `idUsers` INT(11) NOT NULL AUTO_INCREMENT,
+  `idFirebase` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idUsers`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `datamining`.`rating`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `recommenderData`.`rating` (
+  `idRating` INT(11) NOT NULL AUTO_INCREMENT,
+  `rating` INT(11) NOT NULL,
+  `Users_idUsers` INT(11) NOT NULL,
+  `Recipe_idRecipe` INT(11) NOT NULL,
+  PRIMARY KEY (`idRating`),
+  INDEX `fk_Rating_Users_idx` (`Users_idUsers` ASC),
+  INDEX `fk_Rating_Recipe1_idx` (`Recipe_idRecipe` ASC),
+  CONSTRAINT `fk_Rating_Recipe1`
+    FOREIGN KEY (`Recipe_idRecipe`)
+    REFERENCES `recommenderData`.`recipe` (`idRecipe`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Rating_Users`
+    FOREIGN KEY (`Users_idUsers`)
+    REFERENCES `recommenderData`.`users` (`idUsers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 33
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
